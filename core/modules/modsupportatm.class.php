@@ -89,7 +89,8 @@ class modsupportatm extends DolibarrModules
 		//                        );
 		$this->module_parts = array(
             'js'=>array('/supportatm/js/supportatm.js.php')      
-            ,'css' => array('/supportatm/css/supportatm.css')  
+            ,'css' => array('/supportatm/css/supportatm.css')
+            ,'hooks' => array('main') 
         );
 
 		// Data directories to create when module is enabled.
