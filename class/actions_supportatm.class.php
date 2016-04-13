@@ -117,11 +117,7 @@ class Actionssupportatm
 			<br>
 			</div>
 			</div>
-			
-			<script>
-			
 
-			</script>
 		<?php
 		
 		
