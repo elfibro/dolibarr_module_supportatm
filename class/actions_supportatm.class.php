@@ -85,4 +85,42 @@ class Actionssupportatm
 			return -1;
 		}
 	}
+
+
+	function printLeftBlock($parameters, &$object, &$action, $hookmanager){
+		
+		define('INC_FROM_DOLIBARR', true);
+		dol_include_once('supportatm/config.php');
+		
+		
+		
+		    $url = $_SERVER['HTTP_REFERER'];
+		    $info = "URL : ".$url;
+		    $info.="\nUtilisateur : ".$user->login;
+		
+		    $url_support ="http://support.atm-consulting.fr/bug_report_page.php?summary=".urlencode("Saisissez une résumé simple de votre problème")."&description=".urlencode("Donnez nous autant d'informations que possible.")
+		        ."&additional_info=".urlencode($info)."&project_id=".$conf->global->SUPPORTATM_PROJECTID;
+			
+			?>
+			<div id="support_atm_popup" style="">
+			<div class="header">ATM Support</div>
+			<div class="content">
+			Accès web :
+			<strong>
+			<a target="_blank" href="http://support.atm-consulting.fr/bug_report_page.php?summary=Saisissez+une+r%C3%A9sum%C3%A9+simple+de+votre+probl%C3%A8me&description=Donnez+nous+autant+d%27informations+que+possible.&additional_info=URL+%3A+http%3A%2F%2Flocalhost%2Fhtml%2Fclient%2Fceribois%2Fdolibarr%2Fhtdocs%2Findex.php%3Fmainmenu%3Dhome%0AUtilisateur+%3A+admin&project_id=">Support</a>
+			</strong>
+			</br>
+			Téléphone :
+			<strong>09 77 19 50 69</strong>
+			<br>
+			<small>(du lundi au vendredi, hors jours fériés, de 9h 12h et de 14h à 17h)</small>
+			<br>
+			</div>
+			</div>
+
+		<?php
+		
+		
+
+	}
 }
