@@ -64,10 +64,6 @@ class Actionssupportatm
 		$error = 0; // Error counter
 		$myvalue = 'test'; // A result value
 
-		print_r($parameters);
-		echo "action: " . $action;
-		print_r($object);
-
 		if (in_array('somecontext', explode(':', $parameters['context'])))
 		{
 		  // do something only for the context 'somecontext'
