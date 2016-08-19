@@ -82,8 +82,6 @@ class Actionssupportatm
             $title = "[" . $conf->global->MAIN_INFO_SOCIETE_NOM . "] Demande d'assistance";
             $url_email = "mailto:support@atm-consulting.fr?subject=" . urlencode($title) . "&body=" . urlencode($info);
 
-
-
             ?>
             <div class="vmenu">
                 <div id="blockvmenuatm" class="blockvmenubookmarks">
