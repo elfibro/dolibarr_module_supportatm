@@ -50,73 +50,57 @@ class Actionssupportatm
 	{
 	}
 
-	/**
-	 * Overloading the doActions function : replacing the parent's function with the one below
-	 *
-	 * @param   array()         $parameters     Hook metadatas (context, etc...)
-	 * @param   CommonObject    &$object        The object to process (an invoice if you are in invoice module, a propale in propale's module, etc...)
-	 * @param   string          &$action        Current action (if set). Generally create or edit or null
-	 * @param   HookManager     $hookmanager    Hook manager propagated to allow calling another hook
-	 * @return  int                             < 0 on error, 0 on success, 1 to replace standard code
-	 */
-	function doActions($parameters, &$object, &$action, $hookmanager)
-	{
-		$error = 0; // Error counter
-		$myvalue = 'test'; // A result value
+	function printLeftBlock($parameters, &$object, &$action, $hookmanager) {
+	    global $conf, $user, $db;
 
-		if (in_array('somecontext', explode(':', $parameters['context'])))
-		{
-		  // do something only for the context 'somecontext'
-		}
+        if($user->rights->supportatm->read) {
+            // Infos d'ouverture
+            $form = new Form($db);
+            $infobulle = "du lundi au vendredi de 9h à 12h et de 14h à 17h, hors jours fériés";
+            $supportopen = false;
+            if(date('N') <= 5) {
+                if (date('h') > 9 && date('h') < 12 || date('h') > 14 && date('h') < 17) {
+                    $supportopen = true;
+                }
+            }
+            $infopicto = ($supportopen ? 'info' : 'warning');
 
-		if (! $error)
-		{
-			$this->results = array('myreturn' => $myvalue);
-			$this->resprints = 'A text to show';
-			return 0; // or return 1 to replace standard code
-		}
-		else
-		{
-			$this->errors[] = 'Error message';
-			return -1;
-		}
-	}
+            $cur_url = $_SERVER['REQUEST_URI'];
+            $ref_url = $_SERVER['HTTP_REFERER'];
+            $info = "URL : " . $cur_url;
+            $info.= "\nREF : " . $ref_url;
+            $info .= "\nUtilisateur : " . $user->login;
 
+            // Lien vers mantis
+            $url_support = "http://support.atm-consulting.fr/bug_report_page.php";
+            $url_support.= "?summary=" . urlencode("Saisissez une résumé simple de votre problème");
+            $url_support.= "&description=" . urlencode("Donnez nous autant d'informations que possible, exemples, captures d'écran...");
+            $url_support.= "&project_id=" . $conf->global->SUPPORTATM_PROJECTID;
+            $url_support.= "&additional_info=" . urlencode($info);
 
-	function printLeftBlock($parameters, &$object, &$action, $hookmanager){
-		
-		define('INC_FROM_DOLIBARR', true);
-		dol_include_once('supportatm/config.php');
-		
-		
-		
-		    $url = $_SERVER['HTTP_REFERER'];
-		    $info = "URL : ".$url;
-		    $info.="\nUtilisateur : ".$user->login;
-		
-		    $url_support ="http://support.atm-consulting.fr/bug_report_page.php?summary=".urlencode("Saisissez une résumé simple de votre problème")."&description=".urlencode("Donnez nous autant d'informations que possible.")
-		        ."&additional_info=".urlencode($info)."&project_id=".$conf->global->SUPPORTATM_PROJECTID;
-			
-			?>
-			<div id="support_atm_popup" style="">
-			<div class="header">ATM Support</div>
-			<div class="content">
-			Accès web :
-			<strong>
-			<a target="_blank" href="http://support.atm-consulting.fr/bug_report_page.php?summary=Saisissez+une+r%C3%A9sum%C3%A9+simple+de+votre+probl%C3%A8me&description=Donnez+nous+autant+d%27informations+que+possible.&additional_info=URL+%3A+http%3A%2F%2Flocalhost%2Fhtml%2Fclient%2Fceribois%2Fdolibarr%2Fhtdocs%2Findex.php%3Fmainmenu%3Dhome%0AUtilisateur+%3A+admin&project_id=">Support</a>
-			</strong>
-			</br>
-			Téléphone :
-			<strong>09 77 19 50 69</strong>
-			<br>
-			<small>(du lundi au vendredi, hors jours fériés, de 9h 12h et de 14h à 17h)</small>
-			<br>
-			</div>
-			</div>
+            // Lien envoi e-mail
+            $title = "[" . $conf->global->MAIN_INFO_SOCIETE_NOM . "] Demande d'assistance";
+            $url_email = "mailto:support@atm-consulting.fr?subject=" . urlencode($title) . "&body=" . urlencode($info);
 
-		<?php
-		
-		
-
-	}
+            ?>
+            <div class="vmenu">
+                <div id="blockvmenuatm" class="blockvmenubookmarks">
+                    <div class="menu_titre">
+                        <table class="nobordernopadding" summary="bookmarkstable" width="100%">
+                            <tr>
+                                <td><a class="vmenu" href="<?php echo $url_support; ?>" target="_blank">Assistance ATM</a></td>
+                                <td align="right"><?php echo $form->textwithpicto("",$infobulle,1,$infopicto); ?></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="menu_top"></div>
+                    <div class="menu_contenu"><a class="vsmenu" href="<?php echo $url_support; ?>" target="_blank">Accès portail</a></div>
+                    <div class="menu_contenu"><a class="vsmenu" href="<?php echo $url_email; ?>">E-mail</a></div>
+                    <div class="menu_contenu"><a class="vsmenu" href="tel:+33977195069">Tel : 09 77 19 50 69</a></div>
+                    <div class="menu_end"></div>
+                </div>
+            </div>
+            <?php
+        }
+    }
 }
