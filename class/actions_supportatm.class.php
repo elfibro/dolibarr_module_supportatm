@@ -59,7 +59,7 @@ class Actionssupportatm
             $infobulle = "du lundi au vendredi de 9h à 12h et de 14h à 17h, hors jours fériés";
             $supportopen = false;
             if(date('N') <= 5) {
-                if (date('h') > 9 && date('h') < 12 || date('h') > 14 && date('h') < 17) {
+                if (date('H') > 9 && date('H') < 12 || date('H') > 14 && date('H') < 17) {
                     $supportopen = true;
                 }
             }
