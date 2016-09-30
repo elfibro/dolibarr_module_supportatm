@@ -90,7 +90,7 @@ class modsupportatm extends DolibarrModules
 		$this->module_parts = array(
             'js'=>array()
             ,'css' => array()
-            'hooks' => array('leftblock')
+          ,  'hooks' => array('leftblock')
         );
 
 		// Data directories to create when module is enabled.
