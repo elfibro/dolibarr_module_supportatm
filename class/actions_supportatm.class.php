@@ -53,7 +53,9 @@ class Actionssupportatm
 	function printLeftBlock($parameters, &$object, &$action, $hookmanager) {
 	    global $conf, $user, $db;
 
-        if($user->rights->supportatm->read) {
+	    $cssprint=GETPOST('optioncss');
+
+        if($user->rights->supportatm->read && empty($cssprint)) {
             // Infos d'ouverture
             $form = new Form($db);
             $infobulle = "du lundi au vendredi de 9h à 12h et de 14h à 17h, hors jours fériés";
