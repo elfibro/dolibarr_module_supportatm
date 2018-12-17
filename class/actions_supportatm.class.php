@@ -104,5 +104,7 @@ class Actionssupportatm
             </div>
             <?php
         }
+
+        return 0;
     }
 }
