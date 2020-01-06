@@ -97,8 +97,10 @@ class Actionssupportatm
                     </div>
                     <div class="menu_top"></div>
                     <div class="menu_contenu"><a class="vsmenu" href="<?php echo $url_support; ?>" target="_blank">Accès portail</a></div>
+<!--
                     <div class="menu_contenu"><a class="vsmenu" href="<?php echo $url_email; ?>">E-mail</a></div>
                     <div class="menu_contenu"><a class="vsmenu" href="tel:+33977195069">Tel : 09 77 19 50 69</a></div>
+-->
                     <div class="menu_end"></div>
                 </div>
             </div>
