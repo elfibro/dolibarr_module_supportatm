@@ -85,8 +85,8 @@ class Actionssupportatm
             $url_email = "mailto:support@atm-consulting.fr?subject=" . urlencode($title) . "&body=" . urlencode($info);
 
             ?>
-            <div class="vmenu">
-                <div id="blockvmenuatm" class="blockvmenubookmarks">
+            <div class="vmenuatm">
+                <div id="blockvmenuatm" class="blockvmenubookmarks" style="margin-left: 6px">
                     <div class="menu_titre">
                         <table class="nobordernopadding" summary="bookmarkstable" width="100%">
                             <tr>
