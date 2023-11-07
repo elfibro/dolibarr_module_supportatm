@@ -73,8 +73,7 @@ class Actionssupportatm
             $info.= "\nREF : " . $ref_url;
             $info .= "\nUtilisateur : " . $user->login;
 
-            // Lien vers mantis
-            $url_support = "http://support.atm-consulting.fr/bug_report_page.php";
+            $url_support = "https://espace-client.atm-consulting.fr/bug_report_page.php";
             $url_support.= "?summary=" . urlencode("Saisissez une résumé simple de votre problème");
             $url_support.= "&description=" . urlencode("Donnez nous autant d'informations que possible, exemples, captures d'écran...");
             $url_support.= "&project_id=" . $conf->global->SUPPORTATM_PROJECTID;
