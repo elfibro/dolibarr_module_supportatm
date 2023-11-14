@@ -96,10 +96,10 @@ class Actionssupportatm
                     </div>
                     <div class="menu_top"></div>
                     <div class="menu_contenu"><a class="vsmenu" href="<?php echo $url_support; ?>" target="_blank">Accès portail</a></div>
-<!--
+
                     <div class="menu_contenu"><a class="vsmenu" href="<?php echo $url_email; ?>">E-mail</a></div>
                     <div class="menu_contenu"><a class="vsmenu" href="tel:+33975651986">Tel : 09 75 65 19 86</a></div>
--->
+
                     <div class="menu_end"></div>
                 </div>
             </div>
