@@ -73,7 +73,7 @@ class Actionssupportatm
             $info.= "\nREF : " . $ref_url;
             $info .= "\nUtilisateur : " . $user->login;
 
-            $url_support = "https://espace-client.atm-consulting.fr/bug_report_page.php";
+            $url_support = "https://compta-gest.cfpei.fr/public/ticket/index.php?entity=1";
             $url_support.= "?summary=" . urlencode("Saisissez une résumé simple de votre problème");
             $url_support.= "&description=" . urlencode("Donnez nous autant d'informations que possible, exemples, captures d'écran...");
             $url_support.= "&project_id=" . $conf->global->SUPPORTATM_PROJECTID;
@@ -81,7 +81,7 @@ class Actionssupportatm
 
             // Lien envoi e-mail
             $title = "[" . $conf->global->MAIN_INFO_SOCIETE_NOM . "] Demande d'assistance";
-            $url_email = "mailto:support@atm-consulting.fr?subject=" . urlencode($title) . "&body=" . urlencode($info);
+            $url_email = "mailto:support@cfpei.fr?subject=" . urlencode($title) . "&body=" . urlencode($info);
 
             ?>
             <div class="vmenuatm">
@@ -89,7 +89,7 @@ class Actionssupportatm
                     <div class="menu_titre">
                         <table class="nobordernopadding" summary="bookmarkstable" width="100%">
                             <tr>
-                                <td><a class="vmenu" href="<?php echo $url_support; ?>" target="_blank">Assistance ATM</a></td>
+                                <td><a class="vmenu" href="<?php echo $url_support; ?>" target="_blank">Assistance CFPEI</a></td>
                                 <td align="right"><?php echo $form->textwithpicto("",$infobulle,1,$infopicto); ?></td>
                             </tr>
                         </table>
@@ -98,7 +98,7 @@ class Actionssupportatm
                     <div class="menu_contenu"><a class="vsmenu" href="<?php echo $url_support; ?>" target="_blank">Accès portail</a></div>
 <!--
                     <div class="menu_contenu"><a class="vsmenu" href="<?php echo $url_email; ?>">E-mail</a></div>
-                    <div class="menu_contenu"><a class="vsmenu" href="tel:+33977195069">Tel : 09 77 19 50 69</a></div>
+                    <div class="menu_contenu"><a class="vsmenu" href="tel:+33975651986">Tel : 09 75 65 19 86</a></div>
 -->
                     <div class="menu_end"></div>
                 </div>
