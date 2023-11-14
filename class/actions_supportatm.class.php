@@ -69,15 +69,16 @@ class Actionssupportatm
 
             $cur_url = $_SERVER['REQUEST_URI'];
             $ref_url = $_SERVER['HTTP_REFERER'];
+
             $info = "URL : " . $cur_url;
             $info.= "\nREF : " . $ref_url;
             $info .= "\nUtilisateur : " . $user->login;
+	    $info .= "\nVersion Dolibarr : " . DOL_VERSION;
 
-            $url_support = "https://compta-gest.cfpei.fr/public/ticket/index.php?entity=1";
-            $url_support.= "?summary=" . urlencode("Saisissez une résumé simple de votre problème");
-            $url_support.= "&description=" . urlencode("Donnez nous autant d'informations que possible, exemples, captures d'écran...");
-            $url_support.= "&project_id=" . $conf->global->SUPPORTATM_PROJECTID;
-            $url_support.= "&additional_info=" . urlencode($info);
+            $url_support = "https://compta-gest.cfpei.fr/public/ticket/create_ticket.php?action=create&";
+            $url_support.= "email=" . $user->email;
+            $url_support.= "&type_code=3&category_code=9&severity_code=2&options_info=" . urlencode($info);
+            $url_support.= "&subject=[" . $conf->global->MAIN_INFO_SOCIETE_NOM . "] Demande d'assistance";
 
             // Lien envoi e-mail
             $title = "[" . $conf->global->MAIN_INFO_SOCIETE_NOM . "] Demande d'assistance";
@@ -96,10 +97,10 @@ class Actionssupportatm
                     </div>
                     <div class="menu_top"></div>
                     <div class="menu_contenu"><a class="vsmenu" href="<?php echo $url_support; ?>" target="_blank">Accès portail</a></div>
-
+<!--
                     <div class="menu_contenu"><a class="vsmenu" href="<?php echo $url_email; ?>">E-mail</a></div>
                     <div class="menu_contenu"><a class="vsmenu" href="tel:+33975651986">Tel : 09 75 65 19 86</a></div>
-
+-->
                     <div class="menu_end"></div>
                 </div>
             </div>
